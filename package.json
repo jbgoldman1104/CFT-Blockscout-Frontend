@@ -4,22 +4,21 @@
   "private": false,
   "homepage": "https://github.com/blockscout/frontend#readme",
   "engines": {
-    "node": "20.11.0",
-    "npm": "10.2.4"
+    "node": "18.16.1",
+    "npm": "9.5.1"
   },
   "scripts": {
     "dev": "./tools/scripts/dev.sh",
     "dev:preset": "./tools/scripts/dev.preset.sh",
     "build": "next build",
     "build:docker": "docker build --build-arg GIT_COMMIT_SHA=$(git rev-parse --short HEAD) --build-arg GIT_TAG=$(git describe --tags --abbrev=0) -t blockscout-frontend:local ./",
-    "start": "next start",
+    "start": "next start -p 8888",
     "start:docker:local": "docker run -p 3000:3000 --env-file .env.local blockscout-frontend:local",
     "start:docker:preset": "./tools/scripts/docker.preset.sh",
     "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:tsc": "tsc -p ./tsconfig.json",
     "lint:envs-validator:test": "cd ./deploy/tools/envs-validator && ./test.sh",
-    "prepare": "husky install",
     "svg:format": "svgo -r ./icons",
     "svg:build-sprite": "icons build -i ./icons -o ./public/icons --optimize",
     "test:pw": "./tools/scripts/pw.sh",
